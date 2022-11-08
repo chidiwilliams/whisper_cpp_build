@@ -29,9 +29,15 @@ jobs:
             sudo apt update && sudo apt install ffmpeg
           fi
         shell: bash
+      - name: Install valgrind
+        run: |
+          if [ "$RUNNER_OS" == "macOS" ]; then
+            brew install valgrind
+          fi
+        shell: bash
       - run: bash whisper.cpp/models/download-ggml-model.sh tiny
       - run: |
           cd whisper.cpp
           cmake -S . -B build/ -D CMAKE_BUILD_TYPE=Debug
           cmake --build build/
-          build/bin/main samples/jfk.wav -m models/ggml-tiny.bin
+          valgrind build/bin/main samples/jfk.wav -m models/ggml-tiny.bin
