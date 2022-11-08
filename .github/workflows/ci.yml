@@ -20,16 +20,17 @@ jobs:
         with:
           submodules: recursive
       - run: uname -mps
-      - name: Install ffmpeg
-        run: |
-          if [ "$RUNNER_OS" == "macOS" ]; then
-            brew install ffmpeg
-          elif [ "$RUNNER_OS" == "Windows" ]; then
-            choco install ffmpeg
-          elif [ "$RUNNER_OS" == "Linux" ]; then
-            sudo apt update && sudo apt install ffmpeg
-          fi
-        shell: bash
+      - run: sysctl -a | grep machdep.cpu.features
+      # - name: Install ffmpeg
+      #   run: |
+      #     if [ "$RUNNER_OS" == "macOS" ]; then
+      #       brew install ffmpeg
+      #     elif [ "$RUNNER_OS" == "Windows" ]; then
+      #       choco install ffmpeg
+      #     elif [ "$RUNNER_OS" == "Linux" ]; then
+      #       sudo apt update && sudo apt install ffmpeg
+      #     fi
+      #   shell: bash
       - run: bash whisper.cpp/models/download-ggml-model.sh tiny
       - run: |
           cd whisper.cpp
