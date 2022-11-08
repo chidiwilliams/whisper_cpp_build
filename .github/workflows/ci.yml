@@ -34,4 +34,4 @@ jobs:
           cd whisper.cpp
           cmake -S . -B build/ -D CMAKE_BUILD_TYPE=Debug
           cmake --build build/
-          build/bin/main
+          build/bin/main samples/jfk.wav -m models/ggml-tiny.bin
