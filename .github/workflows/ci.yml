@@ -42,4 +42,4 @@ jobs:
           # cmake --build build/
           # make clean
           # make
-          main samples/jfk.wav -m models/ggml-tiny.bin
+          ./main samples/jfk.wav -m models/ggml-tiny.bin
