@@ -31,7 +31,7 @@ jobs:
         shell: bash
       - run: bash whisper.cpp/models/download-ggml-model.sh tiny
       - run: |
-        cd whisper.cpp
-        cmake -S . -B build/ -D CMAKE_BUILD_TYPE=Debug
-        cmake --build build/
-        build/bin/main
+          cd whisper.cpp
+          cmake -S . -B build/ -D CMAKE_BUILD_TYPE=Debug
+          cmake --build build/
+          build/bin/main
