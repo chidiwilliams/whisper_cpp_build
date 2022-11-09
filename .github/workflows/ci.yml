@@ -21,7 +21,6 @@ jobs:
         with:
           submodules: recursive
       - run: uname -mps
-      - run: sysctl -a | grep machdep.cpu
       # - name: Install ffmpeg
       #   run: |
       #     if [ "$RUNNER_OS" == "macOS" ]; then
