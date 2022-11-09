@@ -34,9 +34,7 @@ jobs:
       - run: bash whisper.cpp/models/download-ggml-model.sh tiny
       - run: |
           cd whisper.cpp
-          cc  -I.              -O3 -std=c11   -pthread -mavx -mfma -mf16c -DGGML_USE_ACCELERATE   -c ggml.c -o ggml.o
-          c++ -I. -I./examples -O3 -std=c++11 -pthread -c whisper.cpp -o whisper.o
-          c++ -I. -I./examples -O3 -std=c++11 -pthread examples/main/main.cpp whisper.o ggml.o -o main  -framework Accelerate
+          make
 
           # cmake -S . -B build/ -D CMAKE_BUILD_TYPE=Debug
           # cmake --build build/
