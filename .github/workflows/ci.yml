@@ -40,7 +40,7 @@ jobs:
             c++ -I. -I./examples -O3 -std=c++11 -pthread -c whisper.cpp -o whisper.o
             c++ -I. -I./examples -O3 -std=c++11 -pthread examples/main/main.cpp whisper.o ggml.o -o main  -framework Accelerate
           elif [ "$RUNNER_OS" == "Windows" ]; then
-            gcc  -I.             -O3 -std=c11 -pthread -mfma -mf16c -mavx -c ggml.c -o ggml.o
+            gcc  -I.             -O3 -std=c11 -pthread -mfma -mf16c -mavx -mavx2 -c ggml.c -o ggml.o
             g++ -I. -I./examples -O3 -std=c++11 -pthread -c whisper.cpp -o whisper.o
             g++ -I. -I./examples -O3 -std=c++11 -pthread examples/main/main.cpp whisper.o ggml.o -o main
           fi
