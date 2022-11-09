@@ -46,3 +46,4 @@ jobs:
           fi
 
           ./main samples/jfk.wav -m models/ggml-tiny.bin
+        shell: bash
