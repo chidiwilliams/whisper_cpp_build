@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: macos-11
+          - os: macos-latest
           - os: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,9 +25,9 @@ jobs:
           cd whisper.cpp
 
           if [ "$RUNNER_OS" == "macOS" ]; then
-            cc  -I.              -O3 -std=c11 -pthread -mfma -mf16c -mavx -DGGML_USE_ACCELERATE   -c ggml.c -o ggml.o
-            c++ -I. -I./examples -O3 -std=c++11 -pthread -c whisper.cpp -o whisper.o
-            c++ -I. -I./examples -O3 -std=c++11 -pthread examples/main/main.cpp whisper.o ggml.o -o main  -framework Accelerate
+            cc  -I.              -O3 -std=c11   -fPIC -pthread -mfma -mf16c -mavx -DGGML_USE_ACCELERATE   -c ggml.c -o ggml.o
+            c++ -I. -I./examples -O3 -std=c++11 -fPIC -pthread -c whisper.cpp -o whisper.o
+            c++ -I. -I./examples -O3 -std=c++11 -fPIC -pthread examples/main/main.cpp ggml.o whisper.o -o main  -framework Accelerate
           elif [ "$RUNNER_OS" == "Windows" ]; then
             wmic cpu get
             gcc  -I.             -O3 -std=c11 -pthread -mfma -mf16c -mavx -mavx2 -c ggml.c -o ggml.o
